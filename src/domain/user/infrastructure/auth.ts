@@ -17,7 +17,7 @@ export class AutenticacionAPIAxios implements AutenticacionAPI {
     console.log('login post base2',this.baseUrl)
     return new Promise(async (resolve, reject) => {
     try{
-      const response = await axios.post(`${this.baseUrl}/market/users/login`, { user_name, user_password });
+      const response = await axios.post(`${this.baseUrl}/market/users/login`, { user_name, user_password,cache:'no-store' });
       return resolve(response.data);
     }catch(error: any){
       if (error.response.status === 404) {

@@ -1,14 +1,15 @@
-// components/Login.tsx
+"use_client"
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { AutenticacionAPIAxios} from "../../src/domain/user/infrastructure/auth";
+import { AutenticacionAPIAxios} from "../../../src/domain/user/infrastructure/auth";
 
 const baseUrl = process.env.AUTH_API_BASE_URL||'http://localhost:8081/api';
 export default function Login() {
-  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-    const authApi = new AutenticacionAPIAxios(baseUrl);
+  const authApi = new AutenticacionAPIAxios(baseUrl);
+  const router = useRouter();
+
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
@@ -21,8 +22,6 @@ export default function Login() {
     event.preventDefault();
 
     try {
-     
-
       const token = await authApi.login(username, password);
       console.log('good token',token)
       localStorage.setItem("token", token);
@@ -44,5 +43,5 @@ export default function Login() {
       </label>
       <button type="submit">Login</button>
     </form>
-  );
+  )
 }
